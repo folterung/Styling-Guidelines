@@ -41,15 +41,13 @@ Lets started doing some code examples for the Refrigerator component!
 Starting with "refrigerator.module.js" file:
 What does it look like?
 
-    '''
-      define([
-        'angular',
-        'noext!./refrigerator.service.js'
-      ], function(angular, RefrigeratorService) {
-        var RefrigeratorModule = angular.module('refrigerator.module', []);
-        
-        RefrigeratorModule.factory('RefrigeratorService', RefrigeratorService);
-        
-        return RefrigeratorModule;
-      });
-    '''
+    define([
+      'angular',
+      'noext!./refrigerator.service.js'
+    ], function(angular, RefrigeratorService) {
+      var RefrigeratorModule = angular.module('refrigerator.module', []);
+    
+      RefrigeratorModule.factory('RefrigeratorService', RefrigeratorService);
+    
+      return RefrigeratorModule;
+    });
