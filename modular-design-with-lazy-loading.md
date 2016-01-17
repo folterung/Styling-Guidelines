@@ -18,11 +18,13 @@ Given that we have an application which has a component called "Refrigerator" an
       - components.module.js
     - Freezer
       - partials
-      - styling
+      - styles
       - freezer.controller.js
       - freezer.service.js
       - freezer.module.js
     - Fridge
+      - partials
+      - styles
       - fridge.controller.js
       - fridge.service.js
       - fridge.module.js
