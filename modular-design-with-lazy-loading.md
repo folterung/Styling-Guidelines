@@ -41,7 +41,7 @@ Lets started doing some code examples for the Refrigerator component!
 Starting with "refrigerator.module.js" file:
 What does it look like?
 
-'''javascript
+```javascript
 define([
   'angular',
   'noext!./refrigerator.service.js'
@@ -52,4 +52,4 @@ define([
 
   return RefrigeratorModule;
 });
-'''
+```
