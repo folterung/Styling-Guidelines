@@ -93,3 +93,237 @@ define([
 
 The only true reference to AngularJS in the file is the $inject for the function which uses AngularJS's dependency injection.
 Aside from that we just return a constructor that is used in our "refrigerator.module.js" file.
+
+To provide a complete reference for the Refrigerator I am going to provide the code snippets for the rest of the files without much explanation because it is almost the same thing.
+
+###components.module.js
+```javascript
+define([
+  'angular',
+  'noext!./thermostat.directive.js'
+], function(angular, ThermostateDirective) {
+  var ComponentsModule = angular.module('refrigerator.components.module', []);
+  
+  ComponentsModule.directive('thermostat', ThermostatDirective);
+  
+  return ComponentsModule;
+});
+```
+
+
+###thermostat.directive.js
+```javascript
+define([
+
+], function() {
+  ThermostatDirective.$inject = [];
+  
+  function ThermostatDirective() {
+    return {
+      restrict: 'A',
+      link: link
+    };
+    
+    function link(scope, element, attrs) {
+      //scope is reference to the current scope unless an isolate scope is defined
+      //element is a reference to the jQlite element of the DOM node that this directive is defined on
+      //attrs is a reference to the attributes of the DOM element that this directive is defined on
+    }
+  }
+  
+  return ThermostatDirective;
+});
+```
+
+###freezer.module.js
+```javascript
+define([
+  'angular',
+  'noext!./freezer.service.js',
+  'noext!./freezer.controller.js'
+], function(angular, FreezerService, FreezerController) {
+  var FreezerModule = angular.module('refrigerator.freezer.module', []);
+  
+  FreezerModule.factory('FreezerService', FreezerService);
+  FreezerModule.controller('FreezerController', FreezerController);
+  
+  return FreezerModule;
+});
+```
+
+###freezer.service.js
+```javascript
+define([
+  'angular'
+], function(angular) {
+  FreezerService.$inject = [];
+  
+  function FreezerService() {
+    var temperature = 0;
+    var isDoorOpen = false;
+    
+    var FreezerService = {
+      setTemperature: setTemperature,
+      getTemperature: getTemperature,
+      openDoor: openDoor,
+      closeDoor: closeDoor,
+      getDoorStatus: getDoorStatus
+    };
+    
+    return FreezerService;
+    
+    function setTemperature(newTemperature) {
+      temperature = newTemperature;
+    }
+    
+    function getTemperature() {
+      return temperature;
+    }
+    
+    function openDoor() {
+      if(isDoorOpen) { return; }
+      isDoorOpen = true;
+    }
+    
+    function closeDoor() {
+      if(!isDoorOpen) { return; }
+      isDoorOpen = false;
+    }
+    
+    function getDoorStatus() {
+      return isDoorOpen;
+    }
+  }
+  
+  return FreezerService;
+});
+```
+
+###freezer.controller.js
+```javascript
+define([
+  'angular'
+], function(angular) {
+  FreezerController.$inject = ['FreezerService'];
+
+  function FreezerController(FreezerService) {
+    var freezer = this; //Reference to controller used in our view
+    
+    _updateTemperature(); //freezer.temperature === 0
+    _updateDoorStatus(); //freezer.isDoorOpen === false
+    
+    _updateTemperature(40); //freezer.temperature === 40
+    
+    FreezerService.openDoor();
+    
+    _updateDoorStatus(); //freezer.isDoorOpen === true;
+    
+    function _updateTemperature(newTemperature) {
+      if(newTemperature) {
+        FreezerService.setTemperature(newTemperature);
+      }
+      
+      freezer.temperature = FreezerService.getTemperature();
+    }
+    
+    function _updateDoorStatus() {
+      freezer.isDoorOpen = FreezerService.getDoorStatus();
+    }
+  }
+  
+  return FreezerController;
+});
+```
+
+###fridge.module.js
+```javascript
+define([
+  'angular',
+  'noext!./fridge.service.js',
+  'noext!./fridge.controller.js'
+], function(angular, FridgeService, FridgeController) {
+  var FridgeModule = angular.module('refrigerator.fridge.module', []);
+  
+  FridgeModule.factory('FridgeService', FridgeService);
+  FridgeModule.controller('FridgeController', FridgeController);
+  
+  return FridgeModule;
+});
+```
+
+###fridge.service.js
+```javascript
+define([
+  'angular'
+], function(angular) {
+  FridgeService.$inject = [];
+  
+  function FridgeService() {
+    var temperature = 0;
+    var isDoorOpen = false;
+    
+    var FridgeService = {
+      setTemperature: setTemperature,
+      getTemperature: getTemperature,
+      toggleDoor: toggleDoor,
+      getDoorStatus: getDoorStatus
+    };
+    
+    return FridgeService;
+    
+    function setTemperature(newTemperature) {
+      temperature = newTemperature;
+    }
+    
+    function getTemperature() {
+      return temperature;
+    }
+    
+    function toggleDoor() {
+      isDoorOpen = !isDoorOpen;
+    }
+    
+    function getDoorStatus() {
+      return isDoorOpen;
+    }
+  }
+  
+  return FridgeService;
+});
+```
+
+###fridge.controller.js
+```javascript
+define([
+  'angular'
+], function(angular) {
+  FridgeController.$inject = ['FridgeService'];
+
+  function FridgeController(FridgeService) {
+    var fridge = this; //Reference to controller used in view
+    
+    _updateTemperature(); //fridge.temperature === 0
+    _updateDoorStatus(); //fridge.isDoorOpen === false
+    
+    _updateTemperate(60); //fridge.temperature === 60
+    
+    FridgeService.toggleDoor();
+    
+    _updateDoorStatus(); //fridge.isDoorOpen === true
+    
+    function _updateTemperature(newTemperature) {
+      if(newTemperature) {
+        FridgeService.setTemperature(newTemperature);
+      }
+      
+      fridge.temperature = FridgeService.getTemperature();
+    }
+    
+    function _updateDoorStatus() {
+      fridge.isDoorOpen = FridgeService.getDoorStatus();
+    }
+  }
+  
+  return FridgeController;
+});
+```
