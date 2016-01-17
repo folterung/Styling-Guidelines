@@ -36,6 +36,7 @@ First off, I have provided a more realistic folder structure with our feature in
 Our feature is in the bower_components folder because in this project the Refrigerator component is being maintained in a different github repo and is pulled in by our app.
 
 Lets started doing some code examples for the Refrigerator component!
+
 **NOTE: We are not going to talk about app.js or configuration to keep this quicker.**
 
 Starting with "refrigerator.module.js" file:
@@ -63,6 +64,7 @@ If not then you can read up about it [here.](http://requirejs.org)
 
 One other thing that you will notice is the "noext!" before our file paths.
 This is intentional as we are using the RequireJS plugin noext.
+
 **NOTE: noext is a plugin for RequireJS which stops RequireJS from putting .js as the file extension automatically (this comes in handy when working with ocLazyLoad)**
 
 Aside from that this file looks like some pretty standard AngularJS code.
