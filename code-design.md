@@ -42,16 +42,16 @@ In this example we can see some interesting design patterns that may seem unnece
 
   - We use an "_" to denote that a function is private.
 
-    - This allows other developers that are using your code to identify what is exposed to the view very quickly
+    - This allows other developers that are using your code to identify what is exposed to the view
       - For performance reasons we should try to keep things exposed to the view to a minimum (only what is necessary)
 
   - We define anything that we are exposing to the view near the top of the file.
 
-    - This makes it easy to see everything exposed to the view almost instantly
+    - This makes it easy to see everything exposed to the view
   
   - All functions are defined at the bottom of the controller function and grouped by public/private
 
-    - This makes code that is extreme complex easy to navigate, maintain and continue to scale
+    - This makes code that is extremely complex easy to navigate, maintain and continue to scale
   
   - All variables are defined at the top of the function (even if they are not immediately initialized)
 
