@@ -29,7 +29,7 @@ We originally started with a very simplistic folder structure that looked much l
       - feature-filters.js
     
 We started with this layout because the project was still in it's infancy stages and this kept things less complicated for as long as possible.
-As time progressed and the complexity grew we found ourselves finding it difficult to scale and maintain the code so we came up with a plan to restructure the code structure to achieve this, below shows the result of our changes:
+As time progressed and the complexity grew we found ourselves finding it difficult to scale and maintain the code so we came up with a plan to restructure the code to achieve this, below shows the result of our changes:
 
 **Note: For the example below we will be using "Menu" as our feature**
 
@@ -68,7 +68,7 @@ As time progressed and the complexity grew we found ourselves finding it difficu
 Now let us discuss the changes.
 First thing that you may have noticed that there are more files (I promise there is a good reason).
 
-1. Anyone can now quickly identify where the MenuHeader controller code is located without much effort
+1. Anyone can now quickly identify where the MenuHeader controller code is located
 2. Code remains more compact which makes it easier to refactor and test
 3. By separating the different sub features of the menu we are able to easily re-use those sub features or the whole feature in another project
 4. Easy to identify styling for each feature/sub feature
@@ -76,5 +76,3 @@ First thing that you may have noticed that there are more files (I promise there
 
 **NOTE: In the application that we created we kept the styling at the main feature level instead of separating it.
   If your application is large enough you should separate it because css/scss/less files can quickly become un-managable.**
-
-To follow this pattern you just simply have to keep each piece of AngularJS functionality in it's own file and group files by feature/sub feature
